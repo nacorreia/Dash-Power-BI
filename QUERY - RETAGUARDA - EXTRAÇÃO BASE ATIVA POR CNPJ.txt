@@ -1,0 +1,31 @@
+select
+       l.RedeID,
+       r.Nome as nomeRede,
+       l.LojaID,
+       l.CNPJ,
+       l.Nome as nomeLoja,
+       max(ml.DataPing) as maxDataPing,
+       min(ml.DataPing) as minDataPing,
+       max(ml.Versao) as maxVersao,
+       (select max(c.DataFechamento) from caixa c where c.LojaID = l.LojaID ) as dtUltFechamento
+from loja l
+join rede r on r.RedeID = l.RedeID
+left join MonitoriaLoja ml on ml.lojaid = l.lojaid
+where l.Ativo = 1
+group by l.lojaid, l.redeid, l.nome,r.Nome, l.CNPJ
+
+
+ 
+Integração Oi menu 
+
+7531
+
+
+INCLUSAO DE TAXA DE ENTREGA DA PARA FAZER POR TASK
+
+
+0009 - Noroeste	
+0012 - Brasília Shopping
+0021 - 213 Norte
+0013 - Gama
+0001 - 311 Norte				
